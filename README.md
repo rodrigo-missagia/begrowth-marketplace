@@ -70,6 +70,36 @@ claude --plugin-dir /caminho/para/begrowth-marketplace/plugins/cto-begrowth
 - `/cto/setup` - Configurar plugin
 - `/cto/settings` - Gerenciar configurações
 
+## Agentes
+
+### text-parser
+
+Agente inteligente para importação em massa. Recebe texto livre e automaticamente identifica e cadastra:
+- **Pessoas**: Nomes, cargos, skills, emails
+- **Iniciativas**: Projetos, problemas, objetivos
+- **Tecnologias**: Ferramentas, linguagens, frameworks
+
+**Uso:**
+```
+Equipe da Assiny:
+- João Silva - dev senior, skills: python, react
+- Maria Santos - analista de dados, skills: sql, bigquery
+
+Projetos Q1:
+1. Dashboard de métricas - visibilidade real-time
+2. Automação de reports - relatórios automáticos
+
+Stack: Python, FastAPI, PostgreSQL, Redis
+```
+
+O agente irá:
+1. Identificar o escopo (Assiny)
+2. Extrair 2 pessoas, 2 iniciativas e 4 tecnologias
+3. Confirmar com você antes de cadastrar
+4. Executar os cadastros e reportar resultado
+
+**Trigger phrases:** "importar lista", "cadastrar pessoas", "processar texto", "bulk import", "entrada em massa"
+
 ## Licença
 
 MIT License - Be Growth 2025

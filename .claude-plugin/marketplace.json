@@ -1,18 +1,22 @@
 {
   "name": "begrowth-plugins",
-  "version": "1.0.0",
   "description": "Be Growth Plugin Marketplace - Ferramentas de gestão para CTOs",
-  "author": {
-    "name": "Be Growth",
-    "email": "tech@begrowth.com",
-    "url": "https://begrowth.com.br"
+  "owner": {
+    "name": "Rodrigo Missagia",
+    "email": "rodr@begrowth.com"
   },
-  "plugins": {
-    "cto-begrowth": {
+  "plugins": [
+    {
+      "name": "cto-begrowth",
       "description": "Plugin de gestão CTO para o grupo Be Growth - pessoas, iniciativas, ADRs e sinergias entre UTUA, RESOLVE, ONE CONTROL e ASSINY",
-      "path": "./plugins/cto-begrowth",
       "version": "1.0.0",
-      "keywords": ["cto", "gestao", "pessoas", "roadmap", "adr", "sinergias"]
+      "category": "productivity",
+      "author": {
+        "name": "Rodrigo Missagia",
+        "email": "rodr@begrowth.com"
+      },
+      "source": "./plugins/cto-begrowth",
+      "homepage": "https://begrowth.com.br"
     }
-  }
+  ]
 }

@@ -9,7 +9,7 @@
     {
       "name": "cto-begrowth",
       "description": "Plugin de gestão CTO para o grupo Be Growth - pessoas, iniciativas, ADRs e sinergias entre UTUA, RESOLVE, ONE CONTROL e ASSINY",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "category": "productivity",
       "author": {
         "name": "Rodrigo Missagia",

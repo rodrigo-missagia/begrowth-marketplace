@@ -1,0 +1,23 @@
+[
+  {
+    "event": "PostToolUse",
+    "matcher": "Write|Edit",
+    "type": "prompt",
+    "prompt": "Primeiro, verifique se existe o arquivo .claude/cto-begrowth.local.md e se esta habilitado (enabled: true) e se post_write_validation esta true. Se o arquivo nao existir ou enabled for false ou post_write_validation for false, apenas confirme a operacao sem validacoes adicionais.\n\nSe habilitado, analise a operacao de escrita/edicao que acabou de ocorrer. Se o arquivo modificado esta em ./knowledge/ e e um arquivo de entidade (pessoa, iniciativa, ADR), verifique se o _index.md correspondente precisa ser atualizado. Considere:\n\n1. Se CRIOU arquivo de entidade: _index.md precisa ter nova entrada em entities[], total incrementado, by_status/by_papel atualizado, next_id atualizado\n2. Se EDITOU frontmatter com mudanca de status/papel: _index.md precisa refletir mudanca em by_status/by_papel\n3. Se mudou owner de iniciativa: arquivo da pessoa anterior e nova precisam ser atualizados\n\nSe auto_index_update estiver true nas settings, faca as atualizacoes automaticamente. Se false, apenas informe quais arquivos precisam ser atualizados.",
+    "timeout": 30000
+  },
+  {
+    "event": "Stop",
+    "matcher": "*",
+    "type": "prompt",
+    "prompt": "Primeiro, verifique se existe o arquivo .claude/cto-begrowth.local.md e se esta habilitado (enabled: true) e se stop_consistency_check esta true. Se o arquivo nao existir ou enabled for false ou stop_consistency_check for false, aprove a finalizacao sem validacoes.\n\nSe habilitado, verifique se ha tarefas pendentes relacionadas ao plugin CTO Be Growth:\n\n1. Se foram criadas entidades (pessoa, iniciativa, ADR), os _index.md correspondentes foram atualizados?\n2. Se uma iniciativa foi marcada como concluida, foram registrados resultado e aprendizados?\n3. Se houve atribuicao de pessoa, foram atualizados tanto o arquivo da pessoa quanto da iniciativa?\n4. Se foram identificados gaps de skills, foram registrados nos alerts do _index.md?\n\nSe tudo estiver consistente, aprove a finalizacao. Se houver inconsistencias pendentes, bloqueie e informe o que falta.",
+    "timeout": 30000
+  },
+  {
+    "event": "SessionStart",
+    "matcher": "*",
+    "type": "prompt",
+    "prompt": "Verifique se existe o arquivo .claude/cto-begrowth.local.md. Se existir, leia as configuracoes e use-as durante a sessao. Se session_start_check estiver true, verifique se existe a pasta ./knowledge/ no projeto.\n\nIMPORTANTE: A pasta knowledge/ fica na RAIZ DO PROJETO, nao dentro da pasta do plugin! Use caminho relativo ./knowledge/ a partir da raiz do projeto. NUNCA use cto-plugin/knowledge/ ou similar.\n\nSe o arquivo de settings nao existir, informe que o usuario pode criar um usando o template em cto-plugin/templates/cto-begrowth.local.md ou executando '/cto setup'.\n\nSe ./knowledge/ existir na raiz do projeto, o plugin CTO Be Growth esta configurado e voce pode usar os comandos /people, /roadmap e /inventario. Se nao existir, informe ao usuario que ele pode inicializar com 'inicializar knowledge' ou '/cto setup'.",
+    "timeout": 10000
+  }
+]

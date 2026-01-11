@@ -1,0 +1,66 @@
+# Vocabulario controlado do plugin CTO Be Growth
+# Todos os valores permitidos para campos enumerados
+
+status_iniciativa:
+  - backlog
+  - em_andamento
+  - pausado
+  - concluido
+  - cancelado
+
+status_adr:
+  - proposta
+  - aceita
+  - depreciada
+  - substituida
+
+empresas:
+  - holding
+  - utua
+  - resolve
+  - one-control
+  - assiny
+
+papeis_pessoa:
+  - cto
+  - lider_tech
+  - lider_negocio
+  - dev_senior
+  - dev_pleno
+  - dev_junior
+  - analista
+  - pmo
+  - analista_dados
+  - arquiteto
+  - analista_processos
+  - engenheiro_dados
+  - po
+
+niveis_skill:
+  - junior
+  - pleno
+  - senior
+  - especialista
+  - tech-lead
+  - tech-manager
+
+health_status:
+  - ok
+  - atencao
+  - critico
+
+papeis_iniciativa:
+  - owner
+  - contribuidor
+
+tipos_entidade:
+  - pessoa
+  - iniciativa
+  - adr
+  - pessoas_index
+  - iniciativas_index
+  - adrs_index
+  - contexto
+  - stack
+  - sinergias
+  - empresa_index

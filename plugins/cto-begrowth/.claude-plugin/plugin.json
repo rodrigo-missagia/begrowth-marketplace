@@ -1,0 +1,21 @@
+{
+  "name": "cto-begrowth",
+  "version": "1.0.0",
+  "description": "Plugin de gestao CTO para o grupo Be Growth - pessoas, iniciativas, ADRs e sinergias entre UTUA, RESOLVE, ONE CONTROL e ASSINY",
+  "author": {
+    "name": "Be Growth",
+    "email": "tech@begrowth.com"
+  },
+  "keywords": [
+    "cto",
+    "gestao",
+    "pessoas",
+    "roadmap",
+    "adr",
+    "sinergias",
+    "begrowth"
+  ],
+  "homepage": "https://begrowth.com.br",
+  "license": "MIT",
+  "hooks": "./hooks/hooks.json"
+}

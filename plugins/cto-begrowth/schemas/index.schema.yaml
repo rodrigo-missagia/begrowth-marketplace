@@ -1,0 +1,111 @@
+# Schema de validacao para arquivos _index.md
+# Cada diretorio de entidades tem um _index.md que funciona como tabela
+
+type: object
+required:
+  - type
+  - scope
+  - total
+  - entities
+
+properties:
+  type:
+    enum: [pessoas_index, iniciativas_index, adrs_index]
+  scope:
+    $ref: "#/definitions/empresa"
+  version:
+    type: integer
+    default: 1
+  updated_at:
+    type: string
+    format: date
+
+  # Estatisticas
+  total:
+    type: integer
+    minimum: 0
+  by_status:
+    type: object
+    additionalProperties:
+      type: integer
+    description: "Contagem por status"
+  by_papel:
+    type: object
+    additionalProperties:
+      type: integer
+    description: "Contagem por papel (para pessoas)"
+
+  # Controle de IDs
+  last_id:
+    type: string
+    description: "Ultimo ID utilizado"
+  next_id:
+    type: string
+    description: "Proximo ID disponivel"
+
+  # Listagem de entidades
+  entities:
+    type: array
+    items:
+      type: object
+      required:
+        - id
+        - file
+      properties:
+        id:
+          type: string
+        file:
+          type: string
+        # Campos opcionais que variam por tipo
+        nome:
+          type: string
+        status:
+          type: string
+        owner:
+          type: string
+        papel:
+          type: string
+        titulo:
+          type: string
+        data:
+          type: string
+
+  # Saude
+  health:
+    enum: [ok, atencao, critico]
+  health_reason:
+    type: string
+  alerts:
+    type: array
+    items:
+      type: string
+
+  # Campos especificos por tipo
+  skills_cobertos:
+    type: array
+    items:
+      type: string
+    description: "Para pessoas_index"
+  skills_sem_backup:
+    type: array
+    items:
+      type: string
+    description: "Para pessoas_index"
+  pending:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+        titulo:
+          type: string
+        deadline:
+          type: string
+        responsavel:
+          type: string
+    description: "Para adrs_index - decisoes pendentes"
+
+definitions:
+  empresa:
+    enum: [holding, utua, resolve, one-control, assiny]

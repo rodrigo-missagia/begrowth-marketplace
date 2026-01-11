@@ -1,0 +1,92 @@
+# Schema de validacao para arquivos de pessoa
+# Cada pessoa eh um arquivo .md em [escopo]/pessoas/
+
+type: object
+required:
+  - type
+  - id
+  - scope
+  - nome
+  - papel
+
+properties:
+  type:
+    const: pessoa
+  id:
+    type: string
+    pattern: "^[a-z]+-[a-z]+(-[a-z]+)?$"
+    description: "Slug do nome (joao-silva, maria-da-silva)"
+  scope:
+    $ref: "#/definitions/empresa"
+  version:
+    type: integer
+    default: 1
+  created_at:
+    type: string
+    format: date
+  updated_at:
+    type: string
+    format: date
+
+  # Identificacao
+  nome:
+    type: string
+    description: "Nome completo da pessoa"
+  email:
+    type: string
+    format: email
+  papel:
+    $ref: "#/definitions/papel"
+
+  # Skills
+  skills:
+    type: array
+    items:
+      type: object
+      required:
+        - nome
+        - nivel
+      properties:
+        nome:
+          type: string
+          description: "Nome do skill (google_ads, python, etc)"
+        nivel:
+          $ref: "#/definitions/nivel_skill"
+
+  # Alocacao
+  iniciativas:
+    type: array
+    items:
+      type: object
+      required:
+        - id
+        - papel
+      properties:
+        id:
+          type: string
+          description: "ID da iniciativa (UTUA-001)"
+        papel:
+          enum: [owner, contribuidor]
+
+  # Relacionamentos
+  empresa_base:
+    $ref: "#/definitions/empresa"
+  reporta_a:
+    type: string
+    description: "ID de outra pessoa"
+  backup_de:
+    type: array
+    items:
+      type: string
+  backup_por:
+    type: array
+    items:
+      type: string
+
+definitions:
+  empresa:
+    enum: [holding, utua, resolve, one-control, assiny]
+  papel:
+    enum: [cto, lider_tech, lider_negocio, dev_senior, dev_pleno, analista, pmo]
+  nivel_skill:
+    enum: [junior, pleno, senior, especialista]

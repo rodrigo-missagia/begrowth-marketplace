@@ -1,0 +1,18 @@
+# Knowledge data (user-specific)
+/knowledge/
+
+# Local settings
+.claude/*.local.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log

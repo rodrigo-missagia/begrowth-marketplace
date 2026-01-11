@@ -1,0 +1,82 @@
+# Schema de validacao para arquivos de ADR
+# ADRs ficam em holding/adrs/ (grupo) ou [empresa]/adrs/ (local)
+
+type: object
+required:
+  - type
+  - id
+  - scope
+  - titulo
+  - status
+  - data_decisao
+  - decisor
+
+properties:
+  type:
+    const: adr
+  id:
+    type: string
+    pattern: "^(BG-ADR-[0-9]{3}|[A-Z]+-ADR-[0-9]{3})$"
+    description: "BG-ADR-001 (holding) ou UTUA-ADR-001 (empresa)"
+  scope:
+    $ref: "#/definitions/empresa"
+  version:
+    type: integer
+    default: 1
+  created_at:
+    type: string
+    format: date
+  updated_at:
+    type: string
+    format: date
+
+  # Identificacao
+  titulo:
+    type: string
+    description: "Titulo descritivo da decisao"
+  status:
+    $ref: "#/definitions/status_adr"
+
+  # Metadados
+  data_decisao:
+    type: string
+    format: date
+  decisor:
+    type: string
+    description: "ID da pessoa que tomou a decisao"
+  revisao_prevista:
+    type: string
+    format: date
+
+  # Relacionamentos
+  substitui:
+    type: string
+    nullable: true
+    description: "ID de ADR que esta substitui"
+  substituida_por:
+    type: string
+    nullable: true
+    description: "ID de ADR que substituiu esta"
+
+  # Impacto
+  empresas_afetadas:
+    type: array
+    items:
+      $ref: "#/definitions/empresa"
+  iniciativas_relacionadas:
+    type: array
+    items:
+      type: string
+
+  # Busca
+  keywords:
+    type: array
+    items:
+      type: string
+    description: "Palavras-chave para busca"
+
+definitions:
+  empresa:
+    enum: [holding, utua, resolve, one-control, assiny]
+  status_adr:
+    enum: [proposta, aceita, depreciada, substituida]

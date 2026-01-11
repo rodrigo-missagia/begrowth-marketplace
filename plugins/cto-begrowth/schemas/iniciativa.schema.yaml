@@ -1,0 +1,122 @@
+# Schema de validacao para arquivos de iniciativa
+# Cada iniciativa eh um arquivo .md em [empresa]/iniciativas/
+
+type: object
+required:
+  - type
+  - id
+  - scope
+  - nome
+  - status
+  - problema
+
+properties:
+  type:
+    const: iniciativa
+  id:
+    type: string
+    pattern: "^[A-Z]+-[0-9]{3}$"
+    description: "UTUA-001, RESOLVE-002, etc"
+  scope:
+    $ref: "#/definitions/empresa_sem_holding"
+  version:
+    type: integer
+    default: 1
+  created_at:
+    type: string
+    format: date
+  updated_at:
+    type: string
+    format: date
+
+  # Identificacao
+  nome:
+    type: string
+    description: "Nome descritivo da iniciativa"
+  status:
+    $ref: "#/definitions/status_iniciativa"
+
+  # Ownership
+  owner:
+    type: string
+    description: "ID da pessoa (joao-silva)"
+  contributors:
+    type: array
+    items:
+      type: string
+
+  # Problema e Valor
+  problema:
+    type: string
+    description: "Problema que a iniciativa resolve"
+  pilares:
+    type: array
+    items:
+      type: string
+    description: "Pilares estrategicos que endereça"
+
+  # Requisitos
+  skills_necessarios:
+    type: array
+    items:
+      type: string
+
+  # Dependencias
+  depende_de:
+    type: object
+    properties:
+      iniciativas:
+        type: array
+        items:
+          type: string
+      adrs:
+        type: array
+        items:
+          type: string
+      pessoas:
+        type: array
+        items:
+          type: string
+
+  # Sinergias
+  sinergia_potencial:
+    type: array
+    items:
+      type: object
+      required:
+        - empresa
+        - como
+      properties:
+        empresa:
+          $ref: "#/definitions/empresa"
+        como:
+          type: string
+
+  # Timeline
+  inicio:
+    type: string
+    format: date
+  previsao_fim:
+    type: string
+    format: date
+  data_conclusao:
+    type: string
+    format: date
+  progresso:
+    type: integer
+    minimum: 0
+    maximum: 100
+
+  # Resultado (quando concluida)
+  resultado:
+    type: string
+  aprendizados:
+    type: string
+
+definitions:
+  empresa:
+    enum: [holding, utua, resolve, one-control, assiny]
+  empresa_sem_holding:
+    enum: [utua, resolve, one-control, assiny]
+  status_iniciativa:
+    enum: [backlog, em_andamento, pausado, concluido, cancelado]

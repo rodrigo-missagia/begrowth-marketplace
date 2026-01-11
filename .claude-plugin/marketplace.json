@@ -3,7 +3,7 @@
   "description": "Be Growth Plugin Marketplace - Ferramentas de gestão para CTOs",
   "owner": {
     "name": "Rodrigo Missagia",
-    "email": "rodr@begrowth.com"
+    "email": "rodrigo.missagia@begrowth.com.br"
   },
   "plugins": [
     {
@@ -13,7 +13,7 @@
       "category": "productivity",
       "author": {
         "name": "Rodrigo Missagia",
-        "email": "rodr@begrowth.com"
+        "email": "rodrigo.missagia@begrowth.com.br"
       },
       "source": "./plugins/cto-begrowth",
       "homepage": "https://begrowth.com.br"

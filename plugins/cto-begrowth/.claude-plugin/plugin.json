@@ -15,9 +15,10 @@
     "sinergias",
     "begrowth",
     "bulk-import",
-    "text-parser"
+    "text-parser",
+    "pmo-update",
+    "batch-update"
   ],
   "homepage": "https://begrowth.com.br",
-  "license": "MIT",
-  "hooks": "./hooks/hooks.json"
+  "license": "MIT"
 }

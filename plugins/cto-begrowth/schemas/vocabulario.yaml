@@ -1,66 +1,335 @@
-# Vocabulario controlado do plugin CTO Be Growth
-# Todos os valores permitidos para campos enumerados
+# ============================================================================
+# Vocabulário Controlado - Plugin CTO Be Growth
+# Versão: 2.0
+# Atualizado: 2026-01-11
+# ============================================================================
+# Todos os valores permitidos para campos enumerados.
+# Use este arquivo como fonte única de verdade para validações.
+# ============================================================================
 
-status_iniciativa:
-  - backlog
-  - em_andamento
-  - pausado
-  - concluido
-  - cancelado
-
-status_adr:
-  - proposta
-  - aceita
-  - depreciada
-  - substituida
+# ----------------------------------------------------------------------------
+# ESTRUTURA ORGANIZACIONAL
+# ----------------------------------------------------------------------------
 
 empresas:
-  - holding
-  - utua
-  - resolve
-  - one-control
-  - assiny
+  - holding # Be Growth - compartilhado
+  - utua # Arbitragem de tráfego + Publisher
+  - resolve # Compra de créditos sucessórios
+  - one-control # DMP + CDP + Engajamento
+  - assiny # Checkout + Gateway + Subadquirência
+
+# Para exibição em interfaces e relatórios
+empresas_display:
+  holding: "Be Growth (Holding)"
+  utua: "UTUA"
+  resolve: "RESOLVE"
+  one-control: "ONE CONTROL"
+  assiny: "ASSINY"
+
+# ----------------------------------------------------------------------------
+# PESSOAS
+# ----------------------------------------------------------------------------
 
 papeis_pessoa:
+  # Liderança Executiva
   - cto
-  - lider_tech
-  - lider_negocio
+  - head
+
+  # Liderança Técnica
+  - tech_lead
+  - tech_manager
+  - arquiteto
+
+  # Engenharia de Software
   - dev_senior
   - dev_pleno
   - dev_junior
-  - analista
-  - pmo
-  - analista_dados
-  - arquiteto
-  - analista_processos
-  - engenheiro_dados
-  - po
+  - fullstack # quando não há distinção back/front
 
+  # Infraestrutura e Operações
+  - sre
+  - devops
+  - security_engineer
+  - observability_engineer
+
+  # Dados
+  - engenheiro_dados
+  - analista_dados
+  - ml_engineer
+  - ai_engineer
+
+  # Produto e Gestão
+  - po # Product Owner
+  - pm # Product Manager (se diferente de PO)
+  - pmo
+  - scrum_master
+
+  # Processos e Negócio
+  - analista_processos
+  - analista_negocios
+
+  # Especialistas de Domínio (Assiny)
+  - especialista_pagamentos
+  - especialista_antifraude
+  - especialista_compliance # PCI-DSS, BACEN
+
+  # Liderança de Negócio (não-tech)
+  - lider_negocio
+  - comercial
+  - operacoes
+  - suporte
+  - cs
+
+# Nível de senioridade (ortogonal ao papel)
 niveis_skill:
   - junior
   - pleno
   - senior
   - especialista
-  - tech-lead
-  - tech-manager
+
+# Nível de liderança (ortogonal ao papel e senioridade)
+niveis_lideranca:
+  - ic # Individual Contributor - sem reports
+  - tech_lead # Lidera tecnicamente, pode ter reports
+  - manager # Gestão de pessoas
+  - head # Gestão de área
+  - c_level # CTO, CEO, etc.
+
+# Modelo de contratação
+tipos_contrato:
+  - clt
+  - pj
+  - freelancer
+  - terceirizado
+  - consultoria
+
+# Alocação da pessoa
+alocacao:
+  - dedicado # 100% em uma empresa
+  - compartilhado # Atende múltiplas empresas (holding)
+  - parcial # % definido por empresa
+
+# ----------------------------------------------------------------------------
+# INICIATIVAS
+# ----------------------------------------------------------------------------
+
+status_iniciativa:
+  - backlog # Ideia capturada, não priorizada
+  - refinamento # Em detalhamento/discovery
+  - pronto # Refinado, aguardando capacidade
+  - em_andamento # Em execução ativa
+  - bloqueado # Tem impedimento externo
+  - pausado # Decisão deliberada de parar
+  - concluido # Entregue
+  - cancelado # Não será feito
+
+tipo_iniciativa:
+  - projeto # Tem início, meio e fim definidos
+  - produto # Desenvolvimento contínuo de produto
+  - capacidade # Aquisição de skill/ferramenta/conhecimento
+  - melhoria # Evolução incremental
+  - manutencao # Keep the lights on
+  - debito_tecnica # Tech debt
+  - exploracao # Spike, PoC, pesquisa
+  - compliance # Regulatório obrigatório
+  - infraestrutura # Infra, tooling, plataforma
+
+prioridade:
+  - critica # Drop everything - risco ao negócio
+  - alta # Próximo a ser feito
+  - media # Importante mas não urgente
+  - baixa # Nice to have
+
+# Papéis dentro de uma iniciativa (RACI simplificado)
+papeis_iniciativa:
+  - owner # Accountable - responsável final pelo resultado
+  - executor # Responsible - quem executa o trabalho
+  - contribuidor # Contribui ativamente em partes
+  - sponsor # Patrocinador - aprova recursos/decisões
+  - consultor # Consultado pontualmente (expertise)
+  - informado # Apenas notificado de progresso
+
+# Fase do ciclo de release (para iniciativas de software)
+fase_release:
+  - desenvolvimento # Em construção
+  - dark_launch # Deploy sem exposição
+  - closed_beta # Grupo restrito de usuários
+  - open_beta # Disponível mas com disclaimer
+  - ga # General Availability - produção
+  - sunset # Em descontinuação
+
+# ----------------------------------------------------------------------------
+# DECISÕES DE ARQUITETURA (ADRs)
+# ----------------------------------------------------------------------------
+
+status_adr:
+  - rascunho # Em elaboração
+  - em_revisao # Aguardando feedback
+  - proposta # Pronta para decisão
+  - aceita # Decisão tomada, vigente
+  - depreciada # Não mais recomendada (mas ainda válida para legado)
+  - substituida # Substituída por outra ADR
+  - rejeitada # Proposta não aceita
+
+escopo_adr:
+  - holding # Afeta todo o grupo
+  - empresa # Afeta uma empresa específica
+  - sistema # Afeta um sistema/serviço específico
+
+categoria_adr:
+  - arquitetura # Decisões de estrutura de sistema
+  - tecnologia # Escolha de ferramentas/linguagens
+  - processo # Decisões de processo/workflow
+  - integracao # Como sistemas se comunicam
+  - dados # Modelagem, storage, pipelines
+  - seguranca # Decisões de security
+  - infraestrutura # Cloud, deploy, observabilidade
+
+# ----------------------------------------------------------------------------
+# SAÚDE E SINALIZAÇÕES
+# ----------------------------------------------------------------------------
 
 health_status:
-  - ok
-  - atencao
-  - critico
+  - ok # Tudo bem, sem ação necessária
+  - atencao # Requer monitoramento próximo
+  - critico # Requer ação imediata
 
-papeis_iniciativa:
-  - owner
-  - contribuidor
+# Motivos comuns de health != ok (para tracking)
+health_reasons:
+  - prazo_risco # Risco de atraso
+  - bloqueio_externo # Dependência externa não resolvida
+  - capacidade # Falta de pessoas/skills
+  - escopo_mudou # Mudança de escopo não planejada
+  - tech_debt # Dívida técnica impactando
+  - dependencia # Dependência interna atrasada
+  - budget # Restrição orçamentária
+  - prioridade # Conflito de prioridade
+  - qualidade # Problemas de qualidade/bugs
+  - indefinido # Motivo não especificado
+
+# ----------------------------------------------------------------------------
+# ÁREAS E DOMÍNIOS TÉCNICOS
+# ----------------------------------------------------------------------------
+
+areas_tecnicas:
+  - backend
+  - frontend
+  - mobile
+  - dados
+  - infra
+  - seguranca
+  - ia_ml
+  - integracao
+  - observabilidade
+  - plataforma # Developer experience, tooling
+
+# Domínios de negócio por empresa
+dominios_utua:
+  - arbitragem
+  - publisher
+  - adsense
+  - programatica
+  - tracking
+  - atribuicao
+
+dominios_resolve:
+  - consorcio
+  - previdenciario
+  - trabalhista
+  - precatorio
+  - originacao
+  - analise_credito
+  - revops
+  - crm
+
+dominios_one_control:
+  - cdp
+  - dmp
+  - engajamento
+  - jornadas
+  - segmentacao
+  - eventos
+  - enriquecimento
+
+dominios_assiny:
+  - checkout
+  - gateway
+  - subadquirencia
+  - antifraude
+  - settlement
+  - merchant
+  - ledger
+  - recebiveis
+  - pix
+  - split
+  - reconciliacao
+  - compliance_pci
+
+# ----------------------------------------------------------------------------
+# STACK TÉCNICO
+# ----------------------------------------------------------------------------
+
+status_tecnologia:
+  - homologado # Usar em novos projetos
+  - em_avaliacao # Testando/piloto
+  - piloto # Em uso restrito para validação
+  - legado # Em uso mas não para novos projetos
+  - depreciado # Em processo de remoção
+  - proibido # Não usar em hipótese alguma
+
+categorias_stack:
+  - linguagem
+  - framework_backend
+  - framework_frontend
+  - banco_dados
+  - cache
+  - mensageria
+  - observabilidade
+  - ci_cd
+  - cloud
+  - orquestracao
+  - ia_ml
+  - seguranca
+  - testing
+  - documentacao
+
+# ----------------------------------------------------------------------------
+# SINERGIAS
+# ----------------------------------------------------------------------------
+
+status_sinergia:
+  - identificada # Oportunidade mapeada
+  - em_analise # Avaliando viabilidade
+  - planejada # Decidido fazer, no roadmap
+  - em_execucao # Implementando
+  - ativa # Funcionando e gerando valor
+  - descartada # Avaliada e não faz sentido
+
+tipo_sinergia:
+  - tecnologia # Compartilhar stack/ferramenta
+  - dados # Compartilhar dados entre empresas
+  - pessoas # Compartilhar especialistas
+  - processo # Compartilhar práticas/processos
+  - comercial # Cross-sell, bundle
+  - infraestrutura # Compartilhar infra/custos
+
+# ----------------------------------------------------------------------------
+# TIPOS DE ENTIDADE (para o sistema)
+# ----------------------------------------------------------------------------
 
 tipos_entidade:
+  # Entidades principais
   - pessoa
   - iniciativa
   - adr
+  - sinergia
+
+  # Contextos
+  - contexto # Contexto de empresa (pilares, metas, dores)
+  - stack # Stack técnico (holding ou empresa)
+
+  # Índices (gerados automaticamente, mas útil para queries)
   - pessoas_index
   - iniciativas_index
   - adrs_index
-  - contexto
-  - stack
-  - sinergias
-  - empresa_index
+  - sinergias_index

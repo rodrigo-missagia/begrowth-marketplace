@@ -78,11 +78,6 @@ O plugin usa o arquivo `.claude/cto-begrowth.local.md` para configuracoes por pr
 ```yaml
 enabled: true                    # Habilitar/desabilitar plugin
 
-hooks:
-  post_write_validation: true    # Validar consistencia apos escrita
-  stop_consistency_check: true   # Verificar pendencias ao finalizar
-  session_start_check: true      # Verificar knowledge no inicio
-
 default_empresa: holding         # Empresa padrao (holding, utua, resolve, one-control, assiny)
 
 output:

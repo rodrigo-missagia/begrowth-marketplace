@@ -22,23 +22,27 @@ Adiciona novo item ao inventario (tecnologia, ferramenta, fornecedor ou integrac
 - ERRADO: `cto-plugin/knowledge/` ou qualquer caminho dentro do plugin
 
 ## Uso
+
 ```
 /inventario add [tipo] [escopo]
 ```
 
 **Tipos:**
+
 - `tech` - Tecnologia/linguagem/framework
 - `ferramenta` - Ferramenta SaaS/software
 - `fornecedor` - Fornecedor/parceiro
 - `integracao` - Integracao entre sistemas
 
 **Escopos:**
+
 - `holding` - Compartilhado entre empresas
 - `utua` | `resolve` | `one-control` | `assiny` - Especifico da empresa
 
 ## Fluxo de Execucao
 
 ### 1. Verificar se ja existe
+
 ```
 LER ./knowledge/holding/stack.md
 SE item similar existe:
@@ -47,6 +51,7 @@ SE item similar existe:
 ```
 
 ### 2. Coletar dados
+
 ```
 PERGUNTAR por tipo:
 
@@ -80,6 +85,7 @@ integracao:
 ```
 
 ### 3. Avaliar sinergia
+
 ```
 SE escopo != holding:
   PERGUNTAR "Esta tecnologia pode beneficiar outras empresas?"
@@ -88,6 +94,7 @@ SE escopo != holding:
 ```
 
 ### 4. Atualizar stack.md
+
 ```
 SE tipo == "tech":
   ADICIONAR a secao correspondente em ./knowledge/holding/stack.md
@@ -95,6 +102,7 @@ SE tipo == "tech":
 ```
 
 ### 5. Verificar responsavel
+
 ```
 SE responsavel informado:
   SE responsavel nao existe em ./knowledge/[escopo]/pessoas/:
@@ -133,6 +141,7 @@ PROXIMOS PASSOS:
 ## Validacoes
 
 ### Categorias de Tecnologia Validas
+
 - `data` - Data Platform (BigQuery, Pub/Sub, etc)
 - `backend` - Backend (Python, FastAPI, etc)
 - `frontend` - Frontend (React, Next.js, etc)
@@ -141,6 +150,7 @@ PROXIMOS PASSOS:
 - `infra` - Infraestrutura (GCP, Docker, etc)
 
 ### Categorias de Ferramenta Validas
+
 - `crm` - CRM (HubSpot, Salesforce, etc)
 - `projeto` - Gestao de Projetos (ClickUp, Jira, etc)
 - `comunicacao` - Comunicacao (Slack, Discord, etc)

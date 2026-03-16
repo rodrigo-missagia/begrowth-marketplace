@@ -79,6 +79,8 @@ For INITIATIVES, extract:
 - pilares (infer from context)
 - skills_necessarios (mentioned technologies)
 - owner (if specified)
+- Deliverables (scope)
+- Project UPdates (any project updates necessarys)
 
 For TECHNOLOGIES, extract:
 
@@ -122,6 +124,7 @@ For TECHNOLOGIES, extract:
 **Output Format:**
 
 Present analysis in this structure:
+
 ```
 ANALISE DO TEXTO
 ================
